@@ -29,31 +29,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:visibility="visible" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup1"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_category"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible" >
-
-        <RadioButton
-            android:id="@+id/radio0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Family" />
-
-        <RadioButton
-            android:id="@+id/radio1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Friends" />
-
-        <RadioButton
-            android:id="@+id/radio2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Work" />
-    </RadioGroup>
+        android:ems="15"
+        tools:ignore="TextFields" />
 
     <Button
         android:id="@+id/add"

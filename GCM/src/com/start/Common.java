@@ -12,8 +12,8 @@ import com.library.advanced.PresenterInterface;
 public final class Common {
 	public static PresenterInterface activity ;
 	public static MainPresenter presenter;
-public static ArrayList<String> requests = new ArrayList();
-public static ArrayList<String> messages = new ArrayList();
+public static ArrayList<String> requests = new ArrayList<String> ();
+public static ArrayList<String> messages = new ArrayList<String> ();
 
 	public static final String register="http://gelly.comze.com/register.php",
 			store="", sendFriendRequest="http://gelly.comze.com/sendfriendrequest.php",

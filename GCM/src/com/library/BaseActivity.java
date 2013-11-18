@@ -12,13 +12,15 @@ public abstract class BaseActivity extends FragmentActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		requestManager.start(this);
+		if(!requestManager.isStarted())
+			requestManager.start(this);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onStart();
-		requestManager.start(this);
+		if(!requestManager.isStarted())
+			requestManager.start(this);
 	}
 	@Override
 	protected void onStop() {

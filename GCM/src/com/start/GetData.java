@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -31,7 +30,7 @@ public class GetData {
 		JSONArray jsonArray= new JSONArray();
 		Common.messages.clear();
 		try {
-			if (jsonArray == null)
+			if (getmessages() ==null)
 				return null;
 			if(getmessages().getJSONArray("messages")!=null){
 			jsonArray = getmessages().getJSONArray("messages");

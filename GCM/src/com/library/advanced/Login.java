@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.library.BaseActivity;
-import com.library.Broadcastreciever;
 import com.library.User;
 import com.start.Common;
 import com.start.R;
@@ -31,7 +30,6 @@ public class Login extends BaseActivity implements OnClickListener, PresenterInt
 	@Override
 	public void onStart(){
 		super.onStart();
-		
 		Common.context=this;
 	}
 	@Override
@@ -84,7 +82,7 @@ public class Login extends BaseActivity implements OnClickListener, PresenterInt
 	    	
 			Intent nextScreen = new Intent(Login.this, DashBoard.class);
 			startActivity(nextScreen);
-			Broadcastreciever.intiatethread();
+			finish();
 
 		} else {
 			Log.e("false login", response);
@@ -108,6 +106,11 @@ public class Login extends BaseActivity implements OnClickListener, PresenterInt
 	@Override
 	public void onRequestSuccess(String responce) {
 		onSignInSuccess(responce);
+	}
+	@Override
+	public void onResume() {
+		super.onStart();
+		Common.presenter=new MainPresenter(this);
 	}
 
 }

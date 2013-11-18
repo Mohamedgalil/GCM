@@ -8,11 +8,8 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,16 +22,11 @@ import com.start.WakeLocker;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
-public class Search extends BaseActivity implements OnClickListener,
-		PresenterInterface {
-	EditText searchname;
+public class Search extends BaseActivity implements PresenterInterface {
+	EditText searchname, category;
 	AlertDialog.Builder alertDialogBuilder;
 	Button search_btn, add;
 	TextView name;
-	private RadioGroup radioGroup1;
-	private RadioButton radio0;
-	private RadioButton radio1;
-	private RadioButton radio2;
 	int buttonPressed;
 	String searchedname;
 	String searcheduser, categorystring = "";
@@ -51,13 +43,8 @@ public class Search extends BaseActivity implements OnClickListener,
 		search_btn = (Button) findViewById(R.id.searchbtn);
 		name = (TextView) findViewById(R.id.name);
 		add = (Button) findViewById(R.id.add);
-		radioGroup1 = (RadioGroup) findViewById(R.id.radioGroup1);
-		radio0 = (RadioButton) findViewById(R.id.radio0);
-		radio1 = (RadioButton) findViewById(R.id.radio1);
-		radio2 = (RadioButton) findViewById(R.id.radio2);
-		radio0.setOnClickListener(this);
-		radio1.setOnClickListener(this);
-		radio2.setOnClickListener(this);
+		category = (EditText) findViewById(R.id.et_category);
+		category.setText("Bola");
 		registerReceiver(mHandleMessageReceiver, new IntentFilter(
 				" com.start.DISPLAY_MESSAGE"));
 		Common.presenter = new MainPresenter(Search.this);
@@ -99,18 +86,6 @@ public class Search extends BaseActivity implements OnClickListener,
 		Common.context = this;
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		if (v == radio0) {
-			categorystring = radio0.getText().toString();
-			// Handle clicks for radio0
-		} else if (v == radio1) {
-			categorystring = radio1.getText().toString();
-		} else if (v == radio2) {
-			categorystring = radio2.getText().toString();
-		}
-	}
 
 	final BroadcastReceiver mHandleMessageReceiver = new BroadcastReceiver() {
 
@@ -153,10 +128,9 @@ public class Search extends BaseActivity implements OnClickListener,
 		switch (buttonPressed) {
 		case SEND_REQUEST:
 			showAlert("Sending request..", Style.CONFIRM);
-
 			Log.e("r", Common.user.getEmail()+":"+searchedname+":"+"pending");
 			SendData.sendfriendrequest(Common.user.getEmail(), searchedname,
-					"pending");
+					category.getText().toString().trim());//TODO change category
 		case SEARCH_USER:
 
 			return SendData.getUsers(searchedname);
@@ -178,7 +152,7 @@ public class Search extends BaseActivity implements OnClickListener,
 					name.setText(searchedname);
 					name.setVisibility(View.GONE);
 					add.setVisibility(View.GONE);
-					radioGroup1.setVisibility(View.GONE);
+					category.setVisibility(EditText.GONE);
 				}
 			});
 			
@@ -198,7 +172,7 @@ public class Search extends BaseActivity implements OnClickListener,
 					name.setText(searchedname);
 					name.setVisibility(View.VISIBLE);
 					add.setVisibility(View.VISIBLE);
-					radioGroup1.setVisibility(View.VISIBLE);
+					category.setVisibility(EditText.VISIBLE);
 				}
 			});
 		}
@@ -209,6 +183,11 @@ public class Search extends BaseActivity implements OnClickListener,
 	public void onDestroy() {
 		super.onDestroy();
 		unregisterReceiver(mHandleMessageReceiver);
+	}
+	@Override
+	public void onResume() {
+		super.onStart();
+		Common.presenter=new MainPresenter(this);
 	}
 
 }

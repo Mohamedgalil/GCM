@@ -121,5 +121,10 @@ public class DashBoard extends BaseActivity implements PresenterInterface {
 		super.onStart();
 		Common.context=this;
 	}
+	@Override
+	public void onResume() {
+		super.onStart();
+		Common.presenter=new MainPresenter(this);
+	}
 
 }

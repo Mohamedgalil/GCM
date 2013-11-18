@@ -14,5 +14,5 @@ public interface PresenterInterface  {
 	public String loadDataFromNetwork();
 	public SpiceManager  getRequestManager();
 	public void onRequestSuccess(String response);
-
+	public void onResume();
 }

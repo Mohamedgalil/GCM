@@ -48,7 +48,7 @@ public class Register extends BaseActivity implements PresenterInterface {
 		    	Common.presenter.startManager();
 				Common.user.setEmail(emailstring);
 				Common.user.setPassword(passwordstring);
-				Common.user.setName(emailstring);
+				Common.user.setName(namestring);
 
 			}
 		});
@@ -93,6 +93,11 @@ public class Register extends BaseActivity implements PresenterInterface {
 		Intent nextScreen = new Intent(Register.this, DashBoard.class);
 		startActivity(nextScreen);
 		finish();		
+	}
+	@Override
+	public void onResume() {
+		super.onStart();
+		Common.presenter=new MainPresenter(this);
 	}
 
 }
