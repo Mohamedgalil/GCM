@@ -73,6 +73,7 @@ public class Register extends BaseActivity implements PresenterInterface {
 
 	@Override
 	public String loadDataFromNetwork() {
+		Common.Register=true;
 		GCMRegistrar.checkDevice(this);
 		GCMRegistrar.checkManifest(this);
 		if (isRegistered() == false) {

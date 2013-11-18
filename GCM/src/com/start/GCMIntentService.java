@@ -28,10 +28,13 @@ public class GCMIntentService extends GCMBaseIntentService {
 	@Override
 	protected void onRegistered(Context context, String registrationId) {
 		setRegisteredFlag();
-		SendData.store(context,Common.user.getName()
-				, Common.user.getEmail(), 
-				registrationId,
-				Common.user.getPassword());
+		if(Common.Register)
+			SendData.store(context,Common.user.getName()
+					, Common.user.getEmail(), 
+					registrationId,
+					Common.user.getPassword());
+		else
+			Common.response=SendData.CheckLogin(Common.user.getEmail(), Common.user.getPassword(),registrationId);
 	}
 
 	@Override

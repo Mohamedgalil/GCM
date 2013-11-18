@@ -144,7 +144,7 @@ Log.e("The request friend is:"+friend,"The request friend is:"+friend);
 		}
 	}
 
-	public static String  CheckLogin(final String email, final String password) {
+	public static String  CheckLogin(final String email, final String password, final  String registrationId) {
 		
 	        	HttpClient httpclient = new DefaultHttpClient();
 				HttpPost httppost = new HttpPost(Common.login);
@@ -152,10 +152,12 @@ Log.e("The request friend is:"+friend,"The request friend is:"+friend);
 					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
 					nameValuePairs.add(new BasicNameValuePair("email", email));
 					nameValuePairs.add(new BasicNameValuePair("password", password));
+					nameValuePairs.add(new BasicNameValuePair("regid", registrationId));
+
 					httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 					ResponseHandler<String> responseHandler = new BasicResponseHandler();
 					String response = handleString(httpclient.execute(httppost, responseHandler));
-					Log.e(response, response);
+					Log.e("login senddata", response);
 					return  response;
 				} catch (ClientProtocolException e) {
 				} catch (IOException e) {

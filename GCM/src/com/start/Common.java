@@ -22,11 +22,11 @@ public static ArrayList<String> messages = new ArrayList<String> ();
 			addFriend="http://gelly.comze.com/addfriend.php",
 			logout="http://gelly.comze.com/logout.php",getrequests="http://gelly.comze.com/getrequests.php",
 			search="http://gelly.comze.com/searchusers.php",acceptrequest="http://gelly.comze.com/acceptrequest.php",getmessages="http://gelly.comze.com/getmessages.php",rejectrequest="http://gelly.comze.com/rejectrequest.php";
-	
+	public static boolean Register=false;
 	public static boolean isLoggedIn=false;
 	public static User user=new User();
-    // Google project id
-	//
+
+	public static String response="";//
     static final String SENDER_ID = "866596536732"; 
     static String id = ""; 
 	static String email = "";
